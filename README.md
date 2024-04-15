@@ -6,3 +6,10 @@
 
 ---
 
+[![YouTube Channel](https://img.shields.io/badge/YouTube-TheNeuralMaze-red)](https://www.youtube.com/channel/UCaixkLsW_TWWe_0yZNmvPaw)
+
+Welcome to The Neural Maze! 
+
+This repository accompanies my YouTube channel where we explore various AI projects, applications, tutorials, and more.
+
+
