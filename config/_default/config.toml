@@ -1,0 +1,67 @@
+theme = "blowfish"
+baseURL = "https://your_domain.com/"
+defaultContentLanguage = "en"
+
+enableRobotsTXT = true
+paginate = 18
+summaryLength = 30
+
+buildDrafts = false
+buildFuture = false
+
+[author]
+  name = "The Neural Maze"
+  image = "img/neural_maze_logo.png"
+  headline = "Let's build AI together"
+  bio = "Let's build AI together"
+  links = [
+    { linkedin = "https://www.linkedin.com/in/moteropedrido" },
+    { x-twitter = "https://twitter.com/MTrofficus" },
+    { github = "https://github.com/neural-maze" },
+  ]
+
+
+[imaging]
+  anchor = 'Center'
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  author = "authors"
+  series = "series"
+
+[sitemap]
+  changefreq = 'daily'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[related]
+  threshold = 1
+  includeNewer = true
+  toLower = true
+
+    [[related.indices]]
+        name = "tags"
+        weight = 100
+
+    [[related.indices]]
+        name = "categories"
+        weight = 100
+
+    [[related.indices]]
+        name = "series"
+        weight = 50
+
+    [[related.indices]]
+        name = "date"
+        weight = 0
+
+    [[related.indices]]
+      applyFilter = true
+      name = 'fragmentrefs'
+      type = 'fragments'
+      weight = 10
+

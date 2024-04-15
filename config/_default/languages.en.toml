@@ -1,0 +1,13 @@
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "The Neural Maze"
+
+[params]
+  displayName = "English"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2006-01-02"
+  logo = "img/neural_maze_logo.png"
+  secondaryLogo = "img/neural_maze_logo.png"
+  description = "The Neural Maze"
