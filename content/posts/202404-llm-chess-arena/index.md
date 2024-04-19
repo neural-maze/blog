@@ -12,52 +12,50 @@ The other day I was playing around with one of the hottest frameworks right now:
 
 As defined in the documentation:
 
-> "Cutting-edge framework for orchestrating role-playing, autonomous AI agents.
+> Cutting-edge framework for orchestrating role-playing, autonomous AI agents.
 By fostering collaborative intelligence, CrewAI empowers agents to work together
-seamlessly, tackling complex tasks"
+seamlessly, tackling complex tasks
 
-So, as you can imagine, CrewAI is the right tool if you want to deal with ["multi-agentic patterns"](https://www.youtube.com/watch?v=sal78ACtGTc&ab_channel=SequoiaCapital) (
+So, as you can imagine, CrewAI is the right tool if you want to deal with [multi-agentic patterns](https://www.youtube.com/watch?v=sal78ACtGTc&ab_channel=SequoiaCapital) (
 drawing inspiration from Andrew Ng's video on agentic patterns).
 
-One **(huge)** advantage of CrewAI over other multi-agent frameworks (e.g. Autogen, ChatDev) is its simplicity.
-To start creating your own crews, you just need to understand three key concepts, namely [Agent](https://docs.crewai.com/core-concepts/Agents/),
+One **(huge)** advantage of CrewAI over other multi-agent frameworks (e.g. [Autogen](https://microsoft.github.io/autogen/), [ChatDev](https://github.com/OpenBMB/ChatDev)) is its simplicity.
+To start creating your own **crews**, you just need to understand three key concepts, namely [Agent](https://docs.crewai.com/core-concepts/Agents/),
 [Task](https://docs.crewai.com/core-concepts/Tasks/) and [Tool](https://docs.crewai.com/core-concepts/Tools/).
 
 To make it easier for you, I have created the following simplified diagram 👇
 
 ![Alt text][image-2]
 
-So, as you can see, our "crew" is made of three different agents (represented by the
-cute robots 🤖) which are assigned to a specific task. To achieve each of the tasks goals,
-the agents may (although they may not) need to use some specific tools (e.g. a web scrapper, a search
-engine, a markdown formatter ... you get the idea) and collaborate with each other (maybe 
-one agent is waiting for another agent's analysis or two agents need to discuss a topic
-from different points of views) to show the user the final output.
+The **crew** above consists of three agents, each represented by the orange robots 🤖. As you can see, each agent
+is assigned to a task. In order to accomplish their respective goals, these agents may require the use of 
+specific tools (such as a web scraper, a search engine, a markdown formatter, etc.) and collaborate with one another. 
+This collaboration could involve waiting for another agent's analysis or engaging in discussions from different perspectives. 
+**Ultimately, their collective efforts aim to present the user with the final output.**
 
 Easy, right? At least the high level description 😂
 
 Now that you know the basics of CrewAI, let me detail the "problem" I wanted to solve in this
 article (although it is pretty clear from the title).
 
-What if we ask CrewAI to settle, once and for all, which IDE is better for Python programming: PyCharm or VS Code?
+**How about asking CrewAI to settle, once and for all, which IDE is better for programming in Python: PyCharm or VS Code?**
 
-Let's reframe this problem into CrewAI!
-
+Let's approach this problem from a multi-agent perspective!
 
 ## Agents 🤖
 
-As I told you before, one of the core concepts in CrewAI is the concept of Agent. For this
-application, I've defined 3 different agents.
+As I said before, one of the central concepts in CrewAI is the concept of Agent. For this
+application, we're going to define 3 agents.
 
 ### PyCharm Agent
 
-Our first agent has one clear goal: **conducting a thorough research on why PyCharm is a better
+Our first agent has a clear goal: **to conduct a thorough investigation into why PyCharm is a better
 IDE than VS Code**
 
 As you can see below, it's very easy to define an Agent in CrewAI. We just need to provide
-a **role**, a **goal** , a **list of tools** the agent can use (more on this later) and a **backstory**.
+a **role**, a **goal** , a **list of tools** that the agent can use (more on this later) and a **backstory**.
 
-We can also set the `verbose` to `True` if you want to follow the agentic flow.
+We can also set the `verbose` to `True` if you want to follow the application logs.
 
 ```python
 def pycharm_agent():
@@ -98,9 +96,9 @@ def vscode_agent():
 
 ### IDE Judge Agent
 
-Finally, I've created an agent that'll act as the judge in this discussion. Given the
-research made by both the PyCharm and VS Code agents, this agent will be in charge of
-giving a final verdict to the never ending debate! 🤣
+Finally, let's create an agent to act as an impartial judge in this discussion. Given the
+research carried out by both the PyCharm agent and the VS Code agent, this agent will be in charge of
+providing a final verdict to the never-ending debate! 🤣
 
 ```python
 def ide_judge_agent():
@@ -121,9 +119,9 @@ in CrewAI 🛠️
 
 # Tools 🛠️
 
-For this application, I didn't need anything fancy, just a way to search for content related
+For this application, we don't need anything particularly complex, just a way to search for content related
 to PyCharm / VS Code on the web. In fact, I simply reused one of the [CrewAI Examples](https://github.com/joaomdmoura/crewAI-examples/blob/main/prep-for-a-meeting/tools/ExaSearchTool.py),
-but update the code to using CrewAI tools instead of Langchain tools. 
+but updated the code to use CrewAI tools instead of Langchain tools. 
 
 ```python
 import os
@@ -165,19 +163,19 @@ TOOLS = [search, find_similar, get_contents]
 ```
 
 As you can see in the code above, we are defining three tools (indicated by the `@tool` decorator) 
-, all of them related with the [Exa search engine](https://exa.ai/search?c=all). By using these tools,
-the agents will be able to look for promising information about PyCharm / VS Code using Exa search. 
+, all of them related to the [Exa search engine](https://exa.ai/search?c=all). By using these tools,
+the agents will be able to look for promising information about PyCharm / VS Code using the Exa search engine. 
 
 There's only one thing left ... the tasks!
 
 
 ## Tasks 🏗️
 
-Task definition is also very easy in CrewAI. To define a task we only need to provide a 
+Defining tasks is also very simple in CrewAI. To define a task we only need to provide a 
 **description**, the **expected output** and finally the **agent** (remember the diagram at
 the beginning, an agent is responsible for a task).
 
-I've defined three tasks for this use case (as you can see, they are pretty straightforward)
+We're going to define three tasks for our use case (as you can see, they are pretty straightforward)
 
 ```python
 from textwrap import dedent
@@ -231,9 +229,9 @@ class VSCodeVSPyCharmTasks:
 We are almost there! During the article we have defined our agents, our tasks and our tools, so ...
 what's left? 🤔
 
-Well, we need to create the crew, that is, making all the different parts work together!
+Well, we need to create the crew, i.e. make all the components work together!
 
-Let's import each one of the objects we've been creating and let's connect them together
+Let's import each of the objects we've been creating and connect them together
 using the `Crew` object. Then, simply `kickoff` the application!!
 
 ```python
@@ -273,15 +271,13 @@ result = crew.kickoff()
 
 ## Final Verdict? ⚖️
 
-Let's reveal the final verdict then (SPOILER ALERT 🚨), which IDE is better according to CrewAI?
+So let's reveal the final verdict (SPOILER ALERT 🚨), which IDE is better according to CrewAI?
 Well, sorry to disappoint you reader, but CrewAI's final response is as disappointing as it is 
 extremely reasonable:
 
->"𝐼𝑛 𝑐𝑜𝑛𝑐𝑙𝑢𝑠𝑖𝑜𝑛, 𝑖𝑡'𝑠 ℎ𝑎𝑟𝑑 𝑡𝑜 𝑑𝑒𝑓𝑖𝑛𝑖𝑡𝑖𝑣𝑒𝑙𝑦 𝑠𝑡𝑎𝑡𝑒 𝑤ℎ𝑒𝑡ℎ𝑒𝑟 𝑃𝑦𝐶ℎ𝑎𝑟𝑚 𝑜𝑟 𝑉𝑆𝐶𝑜𝑑𝑒 𝑖𝑠 𝑏𝑒𝑡𝑡𝑒𝑟 𝑓𝑜𝑟 𝑃𝑦𝑡ℎ𝑜𝑛 𝑑𝑒𝑣𝑒𝑙𝑜𝑝𝑚𝑒𝑛𝑡 𝑎𝑠 𝑏𝑜𝑡ℎ ℎ𝑎𝑣𝑒 𝑠𝑢𝑏𝑠𝑡𝑎𝑛𝑡𝑖𝑎𝑙 𝑓𝑒𝑎𝑡𝑢𝑟𝑒𝑠 𝑡ℎ𝑎𝑡 𝑒𝑛ℎ𝑎𝑛𝑐𝑒 𝑡ℎ𝑒 𝑑𝑒𝑣𝑒𝑙𝑜𝑝𝑚𝑒𝑛𝑡 𝑒𝑥𝑝𝑒𝑟𝑖𝑒𝑛𝑐𝑒. 𝑇ℎ𝑒 𝑐ℎ𝑜𝑖𝑐𝑒 𝑢𝑙𝑡𝑖𝑚𝑎𝑡𝑒𝑙𝑦 𝑑𝑒𝑝𝑒𝑛𝑑𝑠 𝑜𝑛 𝑡ℎ𝑒 𝑖𝑛𝑑𝑖𝑣𝑖𝑑𝑢𝑎𝑙 𝑑𝑒𝑣𝑒𝑙𝑜𝑝𝑒𝑟'𝑠 𝑛𝑒𝑒𝑑𝑠 𝑎𝑛𝑑 𝑝𝑟𝑒𝑓𝑒𝑟𝑒𝑛𝑐𝑒𝑠".
+> In conclusion, it's hard to definitely state whether PyCharm or VSCode is better for Python development as both have substantial features that enhance the development experience. The choice ultimately depends on the individual developer's needs and preferences.
 
 **Ladies and gentlemen, it seems the debate continues ... 🔥**
-
-
 
 
 [image-1]: img/crewai_landing_page.png "CrewAI is one of the top Multi AI Agent frameworks right now"
