@@ -18,7 +18,6 @@ disableImageOptimization = true
 disableTextInHeader = true
 
 # defaultBackgroundImage = "/img/data_center_bw.jpg"
-
 highlightCurrentMenuArea = true
 smartTOC = true
 smartTOCHideUnfocusedChildren = false
