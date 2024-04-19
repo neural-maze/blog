@@ -281,4 +281,4 @@ extremely reasonable:
 
 
 [image-1]: img/crewai_landing_page.png "CrewAI is one of the top Multi AI Agent frameworks right now"
-[image-2]: img/crewai.drawio_dark.svg "A simplified architecture of CrewAI"
+[image-2]: img/crewai.drawio.correct.svg "A simplified architecture of CrewAI"
