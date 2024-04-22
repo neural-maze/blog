@@ -2,7 +2,7 @@
 title: "CrewAI decides: VSCode or PyCharm?"
 summary: "A funny weekend project where I created a crew of agents to give me a final verdict about the best Python IDE"
 description: "A funny weekend project where I created a crew of agents to give me a final verdict about the best Python IDE"
-categories: ["LLM", "Agents"]
+categories: ["LLM", "Agents", "crewAI"]
 date: 2024-04-14
 draft: false
 showauthor: false
