@@ -117,7 +117,7 @@ def ide_judge_agent():
 Ok, so we have the agents ready to go! It's time to show you how to create a custom tool
 in CrewAI 🛠️
 
-# Tools 🛠️
+## Tools 🛠️
 
 For this application, we don't need anything particularly complex, just a way to search for content related
 to PyCharm / VS Code on the web. In fact, I simply reused one of the [CrewAI Examples](https://github.com/joaomdmoura/crewAI-examples/blob/main/prep-for-a-meeting/tools/ExaSearchTool.py),
