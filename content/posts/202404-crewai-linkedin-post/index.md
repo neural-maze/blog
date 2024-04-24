@@ -37,8 +37,8 @@ you'll be creating your own **crewAI** applications right after you finish this 
 **The agent is like a member of a team, with its specific skills and a particular goal achieve**. In addition, agents have roles and 
 exhibit defining backstories, which further improves the collaboration dynamics.
 
-It's very easy to create an agent in crewAI. Let's take as example one agent I created a few weeks ago (see this
-article if you are curious):
+It's very easy to create an agent in crewAI. Let's take as example one agent I created a few weeks ago ([see this
+article](https://neural-maze.github.io/blog/posts/202404-crewai-vscode-pycharm/) if you are curious):
 
 ```python
 from crewai import Agent
@@ -356,7 +356,7 @@ crew.kickoff()
 ## Conclusion
 
 This is the final result I obtained after running the crew. It's not the best LinkedIn
-post out there but, hey, it's pretty good and it has its own personality (which is just a copy of mine 🙃)
+post out there but, hey, it's pretty good, and it has its own personality (which is just a copy of mine 🙃)
 
 ```
 🦙 🤯 𝐋𝐋𝐀𝐌𝐀 2 vs 𝐋𝐋𝐀𝐌𝐀 3: 𝐖𝐇𝐎 𝐑𝐄𝐈𝐆𝐍𝐒 𝐒𝐔𝐏𝐑𝐄𝐌𝐄? 🤯 🦙
