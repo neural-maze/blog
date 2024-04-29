@@ -8,6 +8,9 @@ draft: false
 showauthor: false
 ---
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oIb5JqZ5ylA" frameborder="0" allowfullscreen></iframe>
+
+
 > If you prefer to go directly into the code, there's a [GitHub repo available](https://github.com/neural-maze/crewai_linkedin_post/tree/master)!!
 
 We all know LinkedIn, the biggest social network for professionals. And we all know that, sometimes, it's very 
