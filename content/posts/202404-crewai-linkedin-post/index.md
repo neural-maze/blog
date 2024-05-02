@@ -32,7 +32,7 @@ of crewAI's goal:
 > CrewAI empowers agents to work together seamlessly, tackling complex tasks.
 
 It may sound difficult but, believe me, one of the **BIG** advantages of **crewAI** is its extreme simplicity. Just pay
-attention to these three concepts: **Agent**, **Task**, **Tool** and **Crew**. If you understand those
+attention to these four concepts: **Agent**, **Task**, **Tool** and **Crew**. If you understand those
 you'll be creating your own **crewAI** applications right after you finish this article  😀
 
 ### Agent
