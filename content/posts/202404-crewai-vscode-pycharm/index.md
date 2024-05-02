@@ -8,6 +8,9 @@ draft: false
 showauthor: false
 ---
 
+> If you prefer to go directly into the code, there’s a [GitHub repo available](https://github.com/neural-maze/vscode_vs_pycharm_crewai)!!
+
+
 The other day I was playing around with one of the hottest frameworks right now: [**CrewAI**](https://www.crewai.com/).
 
 As defined in the documentation:
