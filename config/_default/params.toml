@@ -43,8 +43,8 @@ smartTOCHideUnfocusedChildren = false
   homepageImage = "/img/data_center_bw.jpg"
 
 [article]
-  showDate = false
-  showViews = false
+  showDate = true
+  showViews = true
   showLikes = false
   showDateOnlyInArticle = true
   showDateUpdated = true
