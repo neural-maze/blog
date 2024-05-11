@@ -10,14 +10,16 @@ showauthor: false
 
 > If you prefer to go directly into the code, there’s a [GitHub repo available](https://github.com/neural-maze/crewai_llama3_arduino)!!
 
-Even if I don't consider myself an expert (far from it!) in [Arduino](https://www.arduino.cc/) programming, I really
-enjoy building electronic projects in my free time. That's the reason why, the other day, an idea came to my mind: 
-**I know some things about AI and I know some things about Arduino so ... what if I make them work together?** 🤔
+Although I don't consider myself an expert (far from it!) in Arduino programming, I really enjoy 
+building electronic projects in my spare time. So, the other day an idea popped into my head: **I know a few things 
+about AI and I know a few things about Arduino so.... what if I make them work together?** 🤔
 
-And given that in the recent weeks I've been working with [crewAI](https://www.crewai.com/), I didn't hesitate: **let's connect crewAI with Arduino**.
-Does it sound exciting? What if I tell you that, in addition, I'll also be using [Ollama](https://ollama.com/) and Llama3 (local LLMs, oh yes 😎)
+And since I've been working with [crewAI](https://www.crewai.com/) for the last few weeks, I didn't hesitate: **let's 
+connect crewAI with Arduino**. 
 
-But, since it's possible that you've never heard of what an Arduino is. Let's calm down, and start with the basics.
+Sounds exciting? What if I tell you that, in addition, I'll also use [Ollama](https://ollama.com/) and Llama3 (local LLMs, oh yes 😎)?
+
+But, not so fast, as you may never have heard of what an Arduino is. Let's calm down, and start with the basics.
 
 Enjoy the ride! 🔥
 
@@ -30,15 +32,15 @@ an Agent or a Tool. If you don't know what I'm talking about, I strongly recomme
 
 ## What's an Arduino?
 
-You can think of an Arduino as a small, programmable computer you can use to create your electronic projects, from 
-simple circuits that make lights blink to full robots capable of moving. The possibilities are endless if you use
+You can think of an Arduino as a small, programmable computer you can use to create your own electronic projects, from 
+simple circuits that make lights blink to fully functional robots capable of moving. The possibilities are endless if you use
 your imagination 💭
 
 Simplifying (a lot 😅), when working with the Arduino platform, you have to differentiate between two "parts".
 
 1️⃣  **The Board**
 
-The Arduino board is the physical hardware that contains the microcontroller chip. This chip is the heart
+The Arduino board is **the physical hardware that contains the microcontroller chip**. This chip is the heart
 of the Arduino and is responsible for executing the instructions you give it through your code.
 
 <p align="center">
@@ -48,8 +50,8 @@ of the Arduino and is responsible for executing the instructions you give it thr
 
 2️⃣  **Programming**
 
-You write code (called sketches) using Arduino programming language (which is based on C / C++). These
-sketches tell the Arduino what to do, such as turning on a light, reading the sensor data or controlling a servomotor.
+You write code (called sketches) using Arduino programming language (which is based on C / C++). **These
+sketches tell the Arduino what to do, such as turning on a light, reading the sensor data or controlling a servomotor.**
 
 For example, this is the sketch for turning on a LED for one second, then off for one second, repeatedly.
 
@@ -66,9 +68,9 @@ void loop() {
 }
 ```
 
-I won't get into the details of sketch programming, since it's out of the scope of this simple tutorial, but, if you are
-interested in this fascinating world, I recommend you to step by the [Arduino official tutorials](https://www.arduino.cc/en/Tutorial/HomePage).
-It contains a lot of examples and explanations (that's where I started my Arduino journey 😝)
+I won't get into the details of sketch programming, as it is beyond the scope of this simple tutorial, but, if you are
+interested in this fascinating world, I recommend you to go through the [Arduino official tutorials](https://www.arduino.cc/en/Tutorial/HomePage).
+It contains a lot of examples and detailed explanations (that's where I started my Arduino journey 😝)
 
 ---
 
@@ -82,30 +84,32 @@ repeatedly**. You can check the circuit we are going to implement in the [circui
     <img alt="img" src="img/arduino_circuit.png" width=400 />
 </p>
 
-And here, you have my "real world" implementation (much, much uglier than circuit.io, I know 🥲)
+And here's my "real world" implementation (much, much uglier than circuit.io, I know 🥲)
 
 <p align="center">
     <img alt="img" src="img/arduino_circuit_android.jpeg" width=400 />
 </p>
 
 
-The next "logical" step would be to program ourselves a sketch, for lighting on an off the LEDs. **But ... that's
-exactly what we are going to automate!!** **Instead of programming the sketch ourselves, a crewAI agent will do it for us
-and, instead of compiling and uploading the code to the Arduino ourselves, another crewAI agent will do it for us!!**
+The next "logical" step would be to manually write a sketch to control de LEDs. **But ... that's exactly
+what we are going to automate!!**
+
+So, instead of doing the programming ourselves, we'll have a crewAI take care of it.
+Similarly, instead of compiling and uploading the code to the Arduino, another crewAI agent will handle that task for us 😎 
 
 
 ## Building the Crew
 
-Let's focus on the following diagram, that displays the crewAI application we are about to build.
+Let's focus on the diagram below, which shows the crewAI application we are about to build.
 
 <p align="center">
     <img alt="img" src="img/crewai_linkedin_influencer.drawio.svg" width=500 />
 </p>
 
 As you can see, the crew is not complex. It consists of two agents: the **Sketch Programmer Agent**
-and the **Arduino Uploader Agent**. The former agent will receive the description of the circuit 
-and its intended behaviour, generating, in return, a sketch file (the extension of a sketch is `.ino` by the way).
-The latter will take the generated sketch, compile it and upload the instructions into the Arduino.
+and the **Arduino Uploader Agent**. The first agent will receive the circuit description 
+and its expected behaviour, generating, in return, a sketch file (the extension of a sketch is `.ino` by the way).
+The second agent will take the generated sketch, compile it and upload the instructions into the Arduino.
 
 So, if everything works as expected, we should end up with three beautiful blinking LEDs without writing one single
 line of C 😍
@@ -113,17 +117,14 @@ line of C 😍
 
 ### Sketch Programmer Agent
 
-As you can see in the diagram above, the **Sketch Programmer Agent** is in charge of generating the code
-(a sketch file with `.ino` extension) that brings to "life" our multi LED circuit. Since I wanted to
-try local LLMs, I'm using [Ollama](https://ollama.com/), that lets you download and interact with 
-local versions of well known LLMs (in my case, Llama 3).
+I promised you at the beginning of this article that we were going to use local LLMs, and I'm a man of my word.
+In this case, I'm going to use a local (quantised) version of Llama 3. How? 
 
-I promised you at the beginning of this article that we were going to use Local LLMs, and I'm a man of my word.
-In this case, I'll be using a local (quantised) version of Llama 3. How? **Simple, using the almighty Ollama.** 
+**Simple, using the almighty Ollama.** 
 
-> If you don't know Ollama, [Matthew Berman has a very good video about this](https://www.youtube.com/watch?v=rIRkxZSn-A8&t=33s&ab_channel=MatthewBerman).
+> If you don't know Ollama, [Matthew Berman has a very good video about it](https://www.youtube.com/watch?v=rIRkxZSn-A8&t=33s&ab_channel=MatthewBerman).
 
-To use Ollama inside crewAI, we just need to add the following lines before defining the agents.
+To use Ollama within crewAI, we just need to add the following lines before defining the agents.
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -133,13 +134,13 @@ llama3 = ChatOpenAI(
     base_url="http://localhost:11434/v1")
 ```
 
-Notice that I'm using `llama3` as my model. If you want to use the same, make sure you've downloaded the model in Ollama!
+Notice that I'm using the `llama3` model. If you want to do the same, make sure you've downloaded it in Ollama!
 
 ```
 ollama pull llama3
 ```
 
-And remember that, if you want to try the model, you just need to run this
+And remember that, if you want to try the model, you just need to run this command.
 
 ```
 ollama run llama3
@@ -165,11 +166,12 @@ sketch_programmer_agent = Agent(
 )
 ```
 
-The agent's goal has information about the circuit we implemented as well as the intended behaviour. In addition,
-you can see the agent is using `llama3` as LLM.
+The agent's goal has information about the circuit we have implemented as well as the intended behaviour. In addition,
+you can see that the agent is using `llama3` as LLM.
 
-But, where is the sketch file generated? No worries! We can control this from the Task assigned to this agent. Let
-me show it to you.
+**But, where is the sketch file generated?  🤔**
+
+Good question! We can control this from the Task assigned to the previous agent. Let me show you.
 
 ```python
 sketch_programming_task = Task(
@@ -181,17 +183,16 @@ sketch_programming_task = Task(
 )
 ```
 
-Look at the `output_sile` attribute. That's exactly what we need;  the first agent will dump the generated
-sketch code into the `./tmp/tmp.ino` file.
+Note the `output_file` attribute. That's exactly what we need;  the first agent will dump the generated
+code into the `./tmp/tmp.ino` file.
 
 
 ### Arduino Uploader Agent
 
-Now that the previous agent has generated the sketch file, we'll need to compile it and upload
-it into the Arduino. 
+Ok, so now that the previous agent has generated the sketch file, this agent needs to compile it and load it into the Arduino.
+Sounds difficult, doesn't it? Well, ... far from it! 
 
-Ok, so now that the previous agent has generated the sketch file, the agent needs to compile it and upload it into the Arduino.
-Sounds difficult, right? Well, ... far from it! **The solution is pretty easy: a custom tool.**
+**The solution is pretty easy: a custom tool.** 🛠️
 
 ```python
 import re
@@ -245,13 +246,13 @@ class CompileAndUploadToArduinoTool(BaseTool):
 
 This tool expects three arguments:
 
-- `ino_file_dir`: The directory containing the sketch. Remember we were using the `tmp` dir.
-- `board_fqbn`: The board type. I'm using an Arduino UNO, so my board type is `arduino:avr:uno`, but it may be different in your case
-- `port`: The port where the Arduino is connected. Mine is connected to port `/dev/cu.usbmodem1201`.
+- `ino_file_dir`: The directory containing the sketch. Remember we were using the **tmp** dir.
+- `board_fqbn`: The board type. I'm using an Arduino UNO, so my board type is **arduino:avr:uno**, but it may be different in your case.
+- `port`: The port where the Arduino is connected. Mine is connected to port **/dev/cu.usbmodem1201**.
 
-When the agent uses the tool (accessing the `_run` method), it will compile the code (`arduino-cli compile ...`) and then
-upload it to the Arduino (`arduino-cli upload ...`). I defined this agent like this (in this case I used GPT4 since
-it works much better for tool using):
+When the agent uses the tool (by accessing the `_run` method), it will compile the code (`arduino-cli compile ...`) and then
+upload it to the Arduino (`arduino-cli upload ...`). I have defined this agent like this (in this case I've used GPT4 since
+it works much better when using tools):
 
 ```python
 tool = CompileAndUploadToArduinoTool(
@@ -274,7 +275,7 @@ arduino_uploader_agent = Agent(
 )
 ```
 
-The Task assigned to this agent is very straightforward.
+And this is the task assigned to the agent.
 
 ```python
 arduino_uploading_task = Task(
@@ -287,8 +288,7 @@ arduino_uploading_task = Task(
 
 ## Results
 
-Nice! We have already defined all the pieces of our application so now it's time to put it all together by building the 
-crew.
+Phew 🥵, it took a while, but we have now built all the pieces needed to build our application. It's time to put it all together!
 
 ```python
 from crewai import Crew
@@ -320,5 +320,8 @@ Curious about the results? Look at the video below!! 👀👀
 
 --- 
 
+Nothing to add, except ....
+
 ![img.png](img/borat.png)
 
+Hope you enjoyed this article. See you around! 👋
