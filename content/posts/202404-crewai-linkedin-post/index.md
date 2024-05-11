@@ -2,7 +2,7 @@
 title: "Automating my LinkedIn posts with CrewAI"
 summary: "Creating LinkedIn posts that replicate my writing style using Selenium, crewAI, GPT-3.5-turbo and Mistral Large"
 description: "Creating LinkedIn posts that replicate my writing style using Selenium, CrewAI, GPT-3.5-turbo and Mistral Large"
-categories: ["LLM", "Agents", "crewAI"]
+categories: ["LLM", "Agents", "crewAI", "Llama3", "Mistral", "GPT"]
 date: 2024-04-22
 draft: false
 showauthor: false
