@@ -12,4 +12,6 @@ Welcome to The Neural Maze!
 
 This repository accompanies my YouTube channel where we explore various AI projects, applications, tutorials, and more.
 
-![img.png](img.png)
+<p align="center">
+    <img alt="img" src="img.png" width=500 />
+</p>
