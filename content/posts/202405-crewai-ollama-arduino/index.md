@@ -8,6 +8,8 @@ draft: false
 showauthor: false
 ---
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2VpRcF7pqug" frameborder="0" allowfullscreen></iframe>
+
 > If you prefer to go directly into the code, there’s a [GitHub repo available](https://github.com/neural-maze/crewai_llama3_arduino)!!
 
 Although I don't consider myself an expert (far from it!) in Arduino programming, I really enjoy 
