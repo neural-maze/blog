@@ -51,7 +51,7 @@ Oh, and don't forget that you can also contact me on [LinkedIn](https://www.link
 
 Ciao! 👋
 
-**(Before you leave the page, a picture of me meditating on the fugacity of life one summer afternoon)** 👇
+**(Before you leave the page, a picture of me reflecting on the Transformer architecture one summer afternoon)** 👇
 
 
-![](miguel.jpeg)
+![](image.jpeg)
