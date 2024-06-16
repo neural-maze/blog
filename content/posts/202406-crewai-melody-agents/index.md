@@ -281,7 +281,7 @@ Ok guys, we are close to the end, I promise 😁
 But the thing is that I wasn't satisfied enough with the application, so I wanted to add a cool
 frontend to it. Not just run a python file from the terminal, but an easy to use interface.
 
-So, with less than [100 lines of Streamlit](https://github.com/neural-maze/melody_agents/blob/master/app.py), I created something like the following:
+So, with less than [100 lines of Streamlit](https://github.com/neural-maze/melody_agents/blob/master/app.py), I created this interface:
 
 <p align="center">
     <img alt="img" src="img/streamlit_landing_page.png" width=500 />
@@ -358,7 +358,8 @@ docker compose build & docker compose up
 ```
 
 If you go to your [Docker Desktop](https://www.docker.com/products/docker-desktop/) (if you don't use 
-Docker Desktop, you're probably out of your mind ... just kidding 🤣)
+Docker Desktop, you're probably out of your mind ... just kidding 🤣) you should see something like this:
+
 
 <p align="center">
     <img alt="img" src="img/docker_desktop.png" width=500 />
